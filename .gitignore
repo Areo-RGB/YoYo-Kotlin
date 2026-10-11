@@ -11,4 +11,5 @@
 *.apk
 *.aab
 *.log
+*.keystore
 metadata.json
