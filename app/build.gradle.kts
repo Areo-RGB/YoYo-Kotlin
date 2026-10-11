@@ -17,7 +17,19 @@ android {
         versionName = "1.0.0"
     }
 
+    signingConfigs {
+        create("debugConfig") {
+            storeFile = file("${rootDir}/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("debugConfig")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -26,7 +38,7 @@ android {
                 "proguard-rules.pro",
             )
             // Signed with the debug keys for now so release builds install directly.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("debugConfig")
         }
     }
 
